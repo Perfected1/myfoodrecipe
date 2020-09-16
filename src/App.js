@@ -13,8 +13,8 @@ class App extends Component {
     e.preventDefault();
     const api_call = await fetch(`https://api.edamam.com/search?q=rice&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=15&calories=591-722&health=alcohol-free`);
     const data = await api_call.json();
-    this.setState({ recipes: data.hits});
-    console.log(this.state.recipes); 
+    this.setState({ recipes: data.hits });
+    // console.log(this.state.recipes); 
   }
   render() {
     return (
@@ -23,6 +23,10 @@ class App extends Component {
           <h1 className="App-title">Recipe Search</h1>
         </header>
         <Form getRecipe={this.getRecipe} />
+        { this.state.recipes.map((recipe) => {
+          return <p key={recipe.recipe.label}>{ recipe.recipe.label }</p>
+        }
+        )}
       </div>
     );
   }
