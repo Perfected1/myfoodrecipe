@@ -16,7 +16,16 @@ class App extends Component {
     const api_call = await fetch(`https://api.edamam.com/search?q=${recipeName}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=15&calories=591-722&health=alcohol-free`);
     const data = await api_call.json();
     this.setState({ recipes: data.hits });
-    // console.log(this.state.recipes); 
+  }
+
+  componentDidMount = () => {
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes })
+  }
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    localStorage.setItem("recipies", recipes)
   }
   render() {
     return (
@@ -25,7 +34,7 @@ class App extends Component {
           <h1 className="App-title">Recipe Search</h1>
         </header>
         <Form getRecipe={this.getRecipe} />
-        <Recipes  recipes={this.state.recipes} />
+        <Recipes recipes={this.state.recipes} />
       </div>
     );
   }
