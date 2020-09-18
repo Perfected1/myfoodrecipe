@@ -16,7 +16,7 @@ const Recipes = props => (
                                 <p className="recipes__subtitle">Owners: <span>{recipe.recipe.source}</span></p>
                             </div>
                             <button className="recipe_buttons">
-                                <Link to={{ pathname: `/recipe/${recipe.recipe.label}`, state: {recipe: recipe.recipe.label} }}>
+                                <Link to={{ pathname: `/recipe/${recipe.recipe.label}`, state: { recipe: recipe.recipe.label } }}>
                                     View Recipe
                                 </Link>
                             </button>
